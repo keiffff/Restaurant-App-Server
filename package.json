@@ -7,8 +7,7 @@
   "author": "Kei Fujikawa",
   "license": "MIT",
   "scripts": {
-    "start": "yarn build; node dist/index.js",
-    "start:dev": "nodemon",
+    "start": "nodemon",
     "build": "tsc",
     "test": "jest",
     "codegen": "graphql-codegen"
