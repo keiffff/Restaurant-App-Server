@@ -4,8 +4,10 @@ import { ResponseGetRestaurantsApi } from '../dataSources/models/restaurantApi';
 
 const resolvers: Resolvers = {
   Query: {
-    restaurants: async (_, { freeword }, { dataSources }: { dataSources: DataSources }) => {
-      const response: ResponseGetRestaurantsApi = await dataSources.restaurantApi.getRestaurantsByFreeword(freeword);
+    restaurants: async (_, { input }, { dataSources }: { dataSources: DataSources }) => {
+      const response: ResponseGetRestaurantsApi = await dataSources.restaurantApi.getRestaurantsByFreeword(
+        input ?? { freeword: '' },
+      );
 
       return {
         totalCount: response.total_hit_count,

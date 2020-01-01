@@ -1,6 +1,5 @@
 import { GraphQLResolveInfo } from 'graphql';
 export type Maybe<T> = T | null;
-export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string,
@@ -8,6 +7,20 @@ export type Scalars = {
   Boolean: boolean,
   Int: number,
   Float: number,
+};
+
+export type FilterInput = {
+  currentPage?: Maybe<Scalars['Int']>,
+  name?: Maybe<Scalars['String']>,
+  latitude?: Maybe<Scalars['Float']>,
+  longitude?: Maybe<Scalars['Float']>,
+  range?: Maybe<Scalars['Int']>,
+  freeword?: Maybe<Scalars['String']>,
+  lunch?: Maybe<Scalars['Int']>,
+  bottomLessCup?: Maybe<Scalars['Int']>,
+  buffet?: Maybe<Scalars['Int']>,
+  parivateRoom?: Maybe<Scalars['Int']>,
+  webReserve?: Maybe<Scalars['Int']>,
 };
 
 export type GetRestaurantsResponse = {
@@ -25,7 +38,7 @@ export type Query = {
 
 
 export type QueryRestaurantsArgs = {
-  freeword?: Maybe<Scalars['String']>
+  input?: Maybe<FilterInput>
 };
 
 export type Restaurant = {
@@ -110,9 +123,11 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>,
-  String: ResolverTypeWrapper<Scalars['String']>,
-  GetRestaurantsResponse: ResolverTypeWrapper<GetRestaurantsResponse>,
+  FilterInput: FilterInput,
   Int: ResolverTypeWrapper<Scalars['Int']>,
+  String: ResolverTypeWrapper<Scalars['String']>,
+  Float: ResolverTypeWrapper<Scalars['Float']>,
+  GetRestaurantsResponse: ResolverTypeWrapper<GetRestaurantsResponse>,
   Restaurant: ResolverTypeWrapper<Restaurant>,
   ID: ResolverTypeWrapper<Scalars['ID']>,
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
@@ -121,9 +136,11 @@ export type ResolversTypes = {
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
   Query: {},
-  String: Scalars['String'],
-  GetRestaurantsResponse: GetRestaurantsResponse,
+  FilterInput: FilterInput,
   Int: Scalars['Int'],
+  String: Scalars['String'],
+  Float: Scalars['Float'],
+  GetRestaurantsResponse: GetRestaurantsResponse,
   Restaurant: Restaurant,
   ID: Scalars['ID'],
   Boolean: Scalars['Boolean'],
@@ -137,7 +154,7 @@ export type GetRestaurantsResponseResolvers<ContextType = any, ParentType extend
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  restaurants?: Resolver<Maybe<ResolversTypes['GetRestaurantsResponse']>, ParentType, ContextType, RequireFields<QueryRestaurantsArgs, 'freeword'>>,
+  restaurants?: Resolver<Maybe<ResolversTypes['GetRestaurantsResponse']>, ParentType, ContextType, QueryRestaurantsArgs>,
 };
 
 export type RestaurantResolvers<ContextType = any, ParentType extends ResolversParentTypes['Restaurant'] = ResolversParentTypes['Restaurant']> = {

@@ -10,6 +10,20 @@ const typeDefs = gql`
     budget: Int!
   }
 
+  input FilterInput {
+    currentPage: Int
+    name: String
+    latitude: Float
+    longitude: Float
+    range: Int
+    freeword: String
+    lunch: Int
+    bottomLessCup: Int
+    buffet: Int
+    parivateRoom: Int
+    webReserve: Int
+  }
+
   type GetRestaurantsResponse {
     totalCount: Int!
     perPage: Int!
@@ -18,7 +32,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    restaurants(freeword: String = ""): GetRestaurantsResponse
+    restaurants(input: FilterInput): GetRestaurantsResponse
   }
 `;
 
