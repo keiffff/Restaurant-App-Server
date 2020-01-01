@@ -32,7 +32,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    restaurants(input: FilterInput): GetRestaurantsResponse
+    restaurants(input: FilterInput): GetRestaurantsResponse!
   }
 `;
 
