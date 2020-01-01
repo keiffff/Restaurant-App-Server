@@ -11,7 +11,7 @@ class RestaurantAPI extends RESTDataSource {
     request.params.set('keyid', process.env.GNAVI_API_ACCESS_KEYID as string);
   }
 
-  public async getRestaurantsByFreeword(input: FilterInput) {
+  public async getRestaurants(input: FilterInput) {
     return this.get('/', {
       ...(input.name ? { name: input.name } : {}),
       ...(input.latitude ? { latitude: input.latitude } : {}),

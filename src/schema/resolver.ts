@@ -5,7 +5,7 @@ import { ResponseGetRestaurantsApi } from '../dataSources/models/restaurantApi';
 const resolvers: Resolvers = {
   Query: {
     restaurants: async (_, { input }, { dataSources }: { dataSources: DataSources }) => {
-      const response: ResponseGetRestaurantsApi = await dataSources.restaurantApi.getRestaurantsByFreeword(
+      const response: ResponseGetRestaurantsApi = await dataSources.restaurantApi.getRestaurants(
         input ?? { freeword: '' },
       );
 
