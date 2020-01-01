@@ -1,5 +1,6 @@
 import { GraphQLResolveInfo } from 'graphql';
 export type Maybe<T> = T | null;
+export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string,
@@ -9,9 +10,17 @@ export type Scalars = {
   Float: number,
 };
 
+export type GetRestaurantsResponse = {
+   __typename?: 'GetRestaurantsResponse',
+  totalCount: Scalars['Int'],
+  perPage: Scalars['Int'],
+  currentPage: Scalars['Int'],
+  restaurants: Array<Restaurant>,
+};
+
 export type Query = {
    __typename?: 'Query',
-  restaurants: Array<Restaurant>,
+  restaurants?: Maybe<GetRestaurantsResponse>,
 };
 
 
@@ -24,6 +33,9 @@ export type Restaurant = {
   id: Scalars['ID'],
   name: Scalars['String'],
   image: Scalars['String'],
+  openTime: Scalars['String'],
+  nearStation: Scalars['String'],
+  budget: Scalars['Int'],
 };
 
 
@@ -99,6 +111,8 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>,
   String: ResolverTypeWrapper<Scalars['String']>,
+  GetRestaurantsResponse: ResolverTypeWrapper<GetRestaurantsResponse>,
+  Int: ResolverTypeWrapper<Scalars['Int']>,
   Restaurant: ResolverTypeWrapper<Restaurant>,
   ID: ResolverTypeWrapper<Scalars['ID']>,
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
@@ -108,22 +122,35 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   Query: {},
   String: Scalars['String'],
+  GetRestaurantsResponse: GetRestaurantsResponse,
+  Int: Scalars['Int'],
   Restaurant: Restaurant,
   ID: Scalars['ID'],
   Boolean: Scalars['Boolean'],
 };
 
+export type GetRestaurantsResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['GetRestaurantsResponse'] = ResolversParentTypes['GetRestaurantsResponse']> = {
+  totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
+  perPage?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
+  currentPage?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
+  restaurants?: Resolver<Array<ResolversTypes['Restaurant']>, ParentType, ContextType>,
+};
+
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  restaurants?: Resolver<Array<ResolversTypes['Restaurant']>, ParentType, ContextType, QueryRestaurantsArgs>,
+  restaurants?: Resolver<Maybe<ResolversTypes['GetRestaurantsResponse']>, ParentType, ContextType, RequireFields<QueryRestaurantsArgs, 'freeword'>>,
 };
 
 export type RestaurantResolvers<ContextType = any, ParentType extends ResolversParentTypes['Restaurant'] = ResolversParentTypes['Restaurant']> = {
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>,
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
   image?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  openTime?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  nearStation?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  budget?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
 };
 
 export type Resolvers<ContextType = any> = {
+  GetRestaurantsResponse?: GetRestaurantsResponseResolvers<ContextType>,
   Query?: QueryResolvers<ContextType>,
   Restaurant?: RestaurantResolvers<ContextType>,
 };

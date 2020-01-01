@@ -5,10 +5,20 @@ const typeDefs = gql`
     id: ID!
     name: String!
     image: String!
+    openTime: String!
+    nearStation: String!
+    budget: Int!
+  }
+
+  type GetRestaurantsResponse {
+    totalCount: Int!
+    perPage: Int!
+    currentPage: Int!
+    restaurants: [Restaurant!]!
   }
 
   type Query {
-    restaurants(freeword: String): [Restaurant!]!
+    restaurants(freeword: String = ""): GetRestaurantsResponse
   }
 `;
 
