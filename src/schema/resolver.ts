@@ -9,17 +9,7 @@ const resolvers: Resolvers = {
         freeword ? freeword : '',
       );
 
-      return response.rest.map(
-        ({
-          id,
-          name,
-          image_url,
-        }: {
-          id: string;
-          name: string;
-          image_url: { shop_image1: string; shop_image2: string; qrcode: string };
-        }) => ({ id, name, image: image_url.shop_image1 }),
-      );
+      return response.rest.map(({ id, name, image_url }) => ({ id, name, image: image_url.shop_image1 }));
     },
   },
 };

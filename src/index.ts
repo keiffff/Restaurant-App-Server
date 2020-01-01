@@ -1,14 +1,14 @@
-import { ApolloServer } from "apollo-server"
+import { ApolloServer } from 'apollo-server';
 import { dataSources } from './dataSources';
 import schema from './schema';
 
 const server = new ApolloServer({
   schema,
   dataSources: () => ({
-    restaurantApi: dataSources.restaurantApi
+    restaurantApi: dataSources.restaurantApi,
   }),
   introspection: true,
-  playground: true
+  playground: true,
 });
 
 const port = process.env.PORT || 4000;

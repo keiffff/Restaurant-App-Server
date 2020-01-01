@@ -1,9 +1,9 @@
-import { RESTDataSource, RequestOptions } from "apollo-datasource-rest";
+import { RESTDataSource, RequestOptions } from 'apollo-datasource-rest';
 
 class RestaurantAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = `https://api.gnavi.co.jp/RestSearchAPI/v3/`
+    this.baseURL = 'https://api.gnavi.co.jp/RestSearchAPI/v3/';
   }
 
   public willSendRequest(request: RequestOptions) {

@@ -10,6 +10,6 @@ const typeDefs = gql`
   type Query {
     restaurants(freeword: String): [Restaurant!]!
   }
-`
+`;
 
 export default typeDefs;
