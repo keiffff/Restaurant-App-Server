@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "name": "Restaurant-App-Server",
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "builds": [{ "src": "dist/index.js", "use": "@now/node-server" }],
+  "routes": [{ "src": "/.*", "dest": "/dist/index.js" }]
+}

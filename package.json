@@ -10,6 +10,7 @@
     "start": "nodemon",
     "build": "tsc",
     "test": "jest",
+    "deploy": "yarn build; now --prod",
     "codegen": "graphql-codegen"
   },
   "devDependencies": {
