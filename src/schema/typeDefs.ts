@@ -1,8 +1,14 @@
 import { gql } from 'apollo-server';
 
 const typeDefs = gql`
+  type Restaurant {
+    id: ID!
+    name: String!
+    image: String!
+  }
+
   type Query {
-    message: String!
+    restaurants(freeword: String): [Restaurant!]!
   }
 `
 

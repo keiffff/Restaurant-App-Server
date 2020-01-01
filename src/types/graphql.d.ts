@@ -11,7 +11,19 @@ export type Scalars = {
 
 export type Query = {
    __typename?: 'Query',
-  message: Scalars['String'],
+  restaurants: Array<Restaurant>,
+};
+
+
+export type QueryRestaurantsArgs = {
+  freeword?: Maybe<Scalars['String']>
+};
+
+export type Restaurant = {
+   __typename?: 'Restaurant',
+  id: Scalars['ID'],
+  name: Scalars['String'],
+  image: Scalars['String'],
 };
 
 
@@ -87,6 +99,8 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>,
   String: ResolverTypeWrapper<Scalars['String']>,
+  Restaurant: ResolverTypeWrapper<Restaurant>,
+  ID: ResolverTypeWrapper<Scalars['ID']>,
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
 };
 
@@ -94,15 +108,24 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   Query: {},
   String: Scalars['String'],
+  Restaurant: Restaurant,
+  ID: Scalars['ID'],
   Boolean: Scalars['Boolean'],
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  message?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  restaurants?: Resolver<Array<ResolversTypes['Restaurant']>, ParentType, ContextType, QueryRestaurantsArgs>,
+};
+
+export type RestaurantResolvers<ContextType = any, ParentType extends ResolversParentTypes['Restaurant'] = ResolversParentTypes['Restaurant']> = {
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>,
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  image?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
 };
 
 export type Resolvers<ContextType = any> = {
   Query?: QueryResolvers<ContextType>,
+  Restaurant?: RestaurantResolvers<ContextType>,
 };
 
 

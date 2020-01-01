@@ -16,5 +16,4 @@ const port = process.env.PORT || 4000;
 (async () => {
   const serverInfo = await server.listen(port);
   console.log(`🚀  Server ready at ${serverInfo.url}`);
-  console.log(dataSources.restaurantApi.getRestaurantsByFreeword(''))
 })();
