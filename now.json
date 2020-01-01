@@ -2,7 +2,8 @@
   "version": 2,
   "name": "Restaurant-App-Server",
   "env": {
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "GNAVI_API_ACCESS_KEYID": "@gnavi_api_access_keyid"
   },
   "builds": [{ "src": "dist/index.js", "use": "@now/node-server" }],
   "routes": [{ "src": "/.*", "dest": "/dist/index.js" }]
