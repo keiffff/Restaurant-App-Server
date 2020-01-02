@@ -22,7 +22,7 @@ class RestaurantAPI extends RESTDataSource {
       ...(input.lunch ? { lunch: input.lunch } : {}),
       ...(input.bottomLessCup ? { bottomless_cup: input.bottomLessCup } : {}),
       ...(input.buffet ? { buffet: input.buffet } : {}),
-      ...(input.parivateRoom ? { private_room: input.parivateRoom } : {}),
+      ...(input.privateRoom ? { private_room: input.privateRoom } : {}),
       ...(input.webReserve ? { web_reserve: input.webReserve } : {}),
     });
   }

@@ -21,7 +21,7 @@ const typeDefs = gql`
     lunch: Int
     bottomLessCup: Int
     buffet: Int
-    parivateRoom: Int
+    privateRoom: Int
     webReserve: Int
   }
 
