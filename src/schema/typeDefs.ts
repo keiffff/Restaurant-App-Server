@@ -7,7 +7,8 @@ const typeDefs = gql`
     image: String!
     openTime: String!
     nearStation: String!
-    budget: Int!
+    lunch: Int
+    budget: Int
   }
 
   input FilterInput {

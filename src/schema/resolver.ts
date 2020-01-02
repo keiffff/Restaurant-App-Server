@@ -13,10 +13,11 @@ const resolvers: Resolvers = {
         totalCount: response.total_hit_count,
         perPage: response.hit_per_page,
         currentPage: response.page_offset,
-        restaurants: response.rest.map(({ id, name, image_url, opentime, access, budget }) => ({
+        restaurants: response.rest.map(({ id, name, image_url, opentime, access, lunch, budget }) => ({
           id,
           name,
-          budget,
+          lunch: lunch ? lunch : null,
+          budget: budget ? budget : null,
           image: image_url.shop_image1,
           openTime: opentime,
           nearStation: access.station,
