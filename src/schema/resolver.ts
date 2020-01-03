@@ -10,9 +10,6 @@ const resolvers: Resolvers = {
       );
 
       return {
-        totalCount: response.total_hit_count,
-        perPage: response.hit_per_page,
-        currentPage: response.page_offset,
         restaurants: response.rest.map(({ id, name, image_url, opentime, access, lunch, budget }) => ({
           id,
           name,
@@ -22,6 +19,11 @@ const resolvers: Resolvers = {
           openTime: opentime,
           nearStation: access.station,
         })),
+        pageInfo: {
+          totalCount: response.total_hit_count,
+          perPage: response.hit_per_page,
+          currentPage: response.page_offset,
+        },
       };
     },
   },

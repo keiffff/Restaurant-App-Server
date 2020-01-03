@@ -13,11 +13,10 @@ class RestaurantAPI extends RESTDataSource {
 
   public async getRestaurants(input: FilterInput) {
     return this.get('/', {
-      ...(input.name ? { name: input.name } : {}),
       ...(input.latitude ? { latitude: input.latitude } : {}),
       ...(input.longitude ? { longitude: input.longitude } : {}),
       ...(input.range ? { range: input.range } : {}),
-      ...(input.currentPage ? { offset_page: input.currentPage } : {}),
+      ...(input.offsetPage ? { offset_page: input.offsetPage } : {}),
       freeword: input.freeword ?? '',
       ...(input.lunch ? { lunch: input.lunch } : {}),
       ...(input.bottomLessCup ? { bottomless_cup: input.bottomLessCup } : {}),

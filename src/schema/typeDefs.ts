@@ -1,6 +1,12 @@
 import { gql } from 'apollo-server';
 
 const typeDefs = gql`
+  type PageInfo {
+    totalCount: Int!
+    perPage: Int!
+    currentPage: Int!
+  }
+
   type Restaurant {
     id: ID!
     name: String!
@@ -12,8 +18,7 @@ const typeDefs = gql`
   }
 
   input FilterInput {
-    currentPage: Int
-    name: String
+    offsetPage: Int
     latitude: Float
     longitude: Float
     range: Int
@@ -26,10 +31,8 @@ const typeDefs = gql`
   }
 
   type GetRestaurantsResponse {
-    totalCount: Int!
-    perPage: Int!
-    currentPage: Int!
     restaurants: [Restaurant!]!
+    pageInfo: PageInfo!
   }
 
   type Query {

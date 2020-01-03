@@ -10,8 +10,7 @@ export type Scalars = {
 };
 
 export type FilterInput = {
-  currentPage?: Maybe<Scalars['Int']>,
-  name?: Maybe<Scalars['String']>,
+  offsetPage?: Maybe<Scalars['Int']>,
   latitude?: Maybe<Scalars['Float']>,
   longitude?: Maybe<Scalars['Float']>,
   range?: Maybe<Scalars['Int']>,
@@ -25,10 +24,15 @@ export type FilterInput = {
 
 export type GetRestaurantsResponse = {
    __typename?: 'GetRestaurantsResponse',
+  restaurants: Array<Restaurant>,
+  pageInfo: PageInfo,
+};
+
+export type PageInfo = {
+   __typename?: 'PageInfo',
   totalCount: Scalars['Int'],
   perPage: Scalars['Int'],
   currentPage: Scalars['Int'],
-  restaurants: Array<Restaurant>,
 };
 
 export type Query = {
@@ -126,11 +130,12 @@ export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>,
   FilterInput: FilterInput,
   Int: ResolverTypeWrapper<Scalars['Int']>,
-  String: ResolverTypeWrapper<Scalars['String']>,
   Float: ResolverTypeWrapper<Scalars['Float']>,
+  String: ResolverTypeWrapper<Scalars['String']>,
   GetRestaurantsResponse: ResolverTypeWrapper<GetRestaurantsResponse>,
   Restaurant: ResolverTypeWrapper<Restaurant>,
   ID: ResolverTypeWrapper<Scalars['ID']>,
+  PageInfo: ResolverTypeWrapper<PageInfo>,
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
 };
 
@@ -139,19 +144,24 @@ export type ResolversParentTypes = {
   Query: {},
   FilterInput: FilterInput,
   Int: Scalars['Int'],
-  String: Scalars['String'],
   Float: Scalars['Float'],
+  String: Scalars['String'],
   GetRestaurantsResponse: GetRestaurantsResponse,
   Restaurant: Restaurant,
   ID: Scalars['ID'],
+  PageInfo: PageInfo,
   Boolean: Scalars['Boolean'],
 };
 
 export type GetRestaurantsResponseResolvers<ContextType = any, ParentType extends ResolversParentTypes['GetRestaurantsResponse'] = ResolversParentTypes['GetRestaurantsResponse']> = {
+  restaurants?: Resolver<Array<ResolversTypes['Restaurant']>, ParentType, ContextType>,
+  pageInfo?: Resolver<ResolversTypes['PageInfo'], ParentType, ContextType>,
+};
+
+export type PageInfoResolvers<ContextType = any, ParentType extends ResolversParentTypes['PageInfo'] = ResolversParentTypes['PageInfo']> = {
   totalCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
   perPage?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
   currentPage?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
-  restaurants?: Resolver<Array<ResolversTypes['Restaurant']>, ParentType, ContextType>,
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
@@ -170,6 +180,7 @@ export type RestaurantResolvers<ContextType = any, ParentType extends ResolversP
 
 export type Resolvers<ContextType = any> = {
   GetRestaurantsResponse?: GetRestaurantsResponseResolvers<ContextType>,
+  PageInfo?: PageInfoResolvers<ContextType>,
   Query?: QueryResolvers<ContextType>,
   Restaurant?: RestaurantResolvers<ContextType>,
 };
