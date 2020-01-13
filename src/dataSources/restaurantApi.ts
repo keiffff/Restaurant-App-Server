@@ -1,5 +1,6 @@
 import { RESTDataSource, RequestOptions } from 'apollo-datasource-rest';
 import { FilterInput } from '../types/graphql';
+import { ResponseGetRestaurantsApi } from './models/restaurantApi';
 
 class RestaurantAPI extends RESTDataSource {
   constructor() {
@@ -11,7 +12,7 @@ class RestaurantAPI extends RESTDataSource {
     request.params.set('keyid', process.env.GNAVI_API_ACCESS_KEYID as string);
   }
 
-  public async getRestaurants(input: FilterInput) {
+  public async getRestaurants(input: FilterInput): Promise<ResponseGetRestaurantsApi> {
     return this.get('/', {
       ...(input.latitude ? { latitude: input.latitude } : {}),
       ...(input.longitude ? { longitude: input.longitude } : {}),

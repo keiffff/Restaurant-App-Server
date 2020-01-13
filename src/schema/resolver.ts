@@ -1,13 +1,9 @@
 import { Resolvers } from '../types/graphql';
-import { DataSources } from '../datasources';
-import { ResponseGetRestaurantsApi } from '../dataSources/models/restaurantApi';
 
 const resolvers: Resolvers = {
   Query: {
-    restaurants: async (_, { input }, { dataSources }: { dataSources: DataSources }) => {
-      const response: ResponseGetRestaurantsApi = await dataSources.restaurantApi.getRestaurants(
-        input ?? { freeword: '' },
-      );
+    restaurants: async (_, { input }, { dataSources }) => {
+      const response = await dataSources.restaurantApi.getRestaurants(input ?? { freeword: '' });
 
       return {
         restaurants: response.rest.map(({ id, name, image_url, opentime, access, lunch, budget }) => ({
