@@ -12,7 +12,7 @@ class RestaurantAPI extends RESTDataSource {
     request.params.set('keyid', process.env.GNAVI_API_ACCESS_KEYID || '');
   }
 
-  public async getRestaurants(input: FilterInput) {
+  public async getRestaurants(input: FilterInput): Promise<GetRestaurantsResponse> {
     const response = await this.get<ResponseGetRestaurantsApi>('/', {
       freeword: input.freeword ?? '',
       ...(input.latitude ? { latitude: input.latitude } : {}),
